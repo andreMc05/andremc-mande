@@ -1,0 +1,33 @@
+# dependencies
+node_modules
+.pnpm-store
+
+# next.js
+.next
+out
+.vercel
+
+# env
+.env
+.env.*
+!.env.example
+
+# build / cache
+dist
+coverage
+*.tsbuildinfo
+next-env.d.ts
+
+# OS / IDE
+.DS_Store
+.idea
+.vscode/*
+!.vscode/extensions.json
+
+# CDK
+infra/cdk/cdk.out
+infra/cdk/cdk.context.json
+
+# misc
+*.log
+.turbo

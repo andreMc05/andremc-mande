@@ -1,0 +1,189 @@
+[
+  {
+    "group": "Frontend",
+    "skills": [
+      {
+        "name": "React",
+        "relatedProjects": ["bee-brave-pure-code", "publishmyassetsmusic"]
+      },
+      {
+        "name": "TypeScript",
+        "relatedProjects": ["quick508-rater", "publishmyassetsmusic"]
+      },
+      {
+        "name": "Angular"
+      },
+      {
+        "name": "JavaScript",
+        "relatedProjects": [
+          "bee-brave-pure-code",
+          "african-global-slave-trade",
+          "blacks-in-us-civil-and-revolutionary-war",
+          "publishmyassetsmusic",
+          "choose-your-stoyline"
+        ]
+      },
+      {
+        "name": "Micro-frontends / Module Federation"
+      },
+      {
+        "name": "TanStack Query"
+      },
+      {
+        "name": "State management"
+      },
+      {
+        "name": "Vite"
+      },
+      {
+        "name": "Tailwind CSS"
+      },
+      {
+        "name": "Material UI"
+      },
+      {
+        "name": "HTML5 / CSS3 / SCSS",
+        "relatedProjects": [
+          "blacks-in-us-civil-and-revolutionary-war",
+          "african-global-slave-trade",
+          "bee-brave-pure-code"
+        ]
+      },
+      {
+        "name": "HTML5 Canvas",
+        "relatedProjects": ["bee-brave-pure-code", "african-global-slave-trade"]
+      }
+    ]
+  },
+  {
+    "group": "Cloud & Infrastructure",
+    "skills": [
+      {
+        "name": "Node.js / Express"
+      },
+      {
+        "name": "FastAPI / Python",
+        "relatedProjects": ["choose-your-stoyline", "quick508-rater"]
+      },
+      {
+        "name": "REST APIs"
+      },
+      {
+        "name": "AWS Lambda"
+      },
+      {
+        "name": "SQS"
+      },
+      {
+        "name": "CloudWatch / Logs Insights"
+      },
+      {
+        "name": "RDS / SQL"
+      },
+      {
+        "name": "S3"
+      },
+      {
+        "name": "Docker"
+      },
+      {
+        "name": "Grafana"
+      }
+    ]
+  },
+  {
+    "group": "AI/LLM Systems",
+    "skills": [
+      {
+        "name": "LLM integrations",
+        "relatedProjects": ["choose-your-stoyline", "quick508-rater"]
+      },
+      {
+        "name": "Claude AI pilot / workflow standards"
+      },
+      {
+        "name": "RAG"
+      },
+      {
+        "name": "Internal developer tools",
+        "relatedProjects": ["quick508-rater", "publishmyassetsmusic"]
+      },
+      {
+        "name": "Workflow automation"
+      }
+    ]
+  },
+  {
+    "group": "Tooling & Automation",
+    "skills": [
+      {
+        "name": "Vitest / Jest / React Testing Library"
+      },
+      {
+        "name": "Cypress"
+      },
+      {
+        "name": "Azure DevOps"
+      },
+      {
+        "name": "GitLab CI/CD"
+      },
+      {
+        "name": "Jenkins"
+      },
+      {
+        "name": "SonarQube"
+      },
+      {
+        "name": "Git",
+        "relatedProjects": [
+          "choose-your-stoyline",
+          "publishmyassetsmusic",
+          "blacks-in-us-civil-and-revolutionary-war",
+          "african-global-slave-trade",
+          "bee-brave-pure-code",
+          "quick508-rater"
+        ]
+      },
+      {
+        "name": "Accessibility / Section 508 pre-audit",
+        "relatedProjects": ["quick508-rater"]
+      }
+    ]
+  },
+  {
+    "group": "Platform & Other",
+    "skills": [
+      {
+        "name": "Electron"
+      },
+      {
+        "name": "NativeScript"
+      },
+      {
+        "name": "WebRTC"
+      },
+      {
+        "name": "IndexedDB",
+        "relatedProjects": ["publishmyassetsmusic"]
+      },
+      {
+        "name": "Auth0"
+      },
+      {
+        "name": "Agile / SAFe"
+      },
+      {
+        "name": "Digital humanities / interactive maps",
+        "relatedProjects": [
+          "blacks-in-us-civil-and-revolutionary-war",
+          "african-global-slave-trade"
+        ]
+      },
+      {
+        "name": "Music catalog / rights tooling",
+        "relatedProjects": ["publishmyassetsmusic"]
+      }
+    ]
+  }
+]

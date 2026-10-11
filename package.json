@@ -1,0 +1,11 @@
+{
+  "name": "andremcmade",
+  "private": true,
+  "packageManager": "pnpm@12.10.1",
+  "scripts": {
+    "dev": "pnpm --filter @andremcmade/web dev",
+    "build": "pnpm --filter @andremcmade/web build",
+    "start": "pnpm --filter @andremcmade/web start",
+    "lint": "pnpm --filter @andremcmade/web lint"
+  }
+}

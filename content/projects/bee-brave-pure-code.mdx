@@ -1,0 +1,34 @@
+---
+slug: bee-brave-pure-code
+title: Bee Brave
+summary: A top-down hexagonal hive arcade shooter — pure ES modules, no framework, no bundler. Defend the honeycomb, collect honey, survive the swarm.
+coverImage: /images/projects/bee-brave-pure-code.jpg
+coverImageAlt: Bee Brave gameplay — player ship firing toward a honeycomb hive while bees swarm, with score, shield, and health HUD
+tags: [game-dev, canvas, arcade, pure-js]
+dateCreated: "2026-01-05"
+dateUpdated: "2026-04-26"
+featured: true
+draft: false
+status: live
+category: [game-dev, performance]
+techStack: [JavaScript, HTML5 Canvas, CSS, HTML]
+links:
+  live: https://andremc05.github.io/bee-brave-pure-code/
+  repo: https://github.com/andreMc05/bee-brave-pure-code
+outcome: Framework-free canvas game with weapons, resource economy, hive growth, and local high-score persistence.
+dateStarted: "2026-01-05"
+---
+
+## Problem
+
+I wanted a complete arcade loop — movement, combat, resources, base building, and score — without a bundler or game framework. The constraint was the point: **pure ES modules** that run as authored.
+
+## Approach
+
+**Bee Brave** is a top-down shooter in a hexagonal hive world. You defend honeycomb cells from invading bees and elite hunters while collecting honey to grow the hive. Special weapons, heavy ordnance drops, and defensive tech deepen the combat loop. The run ends when hive cells are destroyed; high score saves locally.
+
+Controls stay keyboard-first (WASD / arrows, Space, specials on `V` / `B` / `C`).
+
+## Outcome
+
+A shippable pure-code canvas game that doubles as a performance and architecture reference for “how far can vanilla go” before reaching for a framework.

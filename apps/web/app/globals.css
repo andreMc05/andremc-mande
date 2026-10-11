@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+/*
+  Design tokens — "Lake & Signal"
+  Cool concrete surface, deep ink, lake-blue secondary, signal amber accent.
+  Avoids purple gradients, cream+terracotta serif, and broadsheet layouts.
+  Contrast targets WCAG 2.2 AA at the token level.
+*/
+
+:root {
+  --bg: #e6e9ee;
+  --bg-elevated: #f4f6f8;
+  --ink: #12151a;
+  --ink-muted: #4a5563;
+  --line: #c5ccd6;
+  --accent: #b45309;
+  --accent-hover: #92400e;
+  --accent-soft: #fef3c7;
+  --lake: #145f73;
+  --lake-soft: #d7eef3;
+  --focus: #145f73;
+
+  --font-display: var(--font-syne);
+  --font-body: var(--font-source-serif);
+  --font-mono: var(--font-ibm-plex-mono);
+
+  --space-page: clamp(1.25rem, 4vw, 3rem);
+  --max-content: 72rem;
+  --radius-sm: 0.25rem;
+  --header-h: 4.25rem;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration: 280ms;
+}
+
+/* Music blog shell — darker editorial (applied via data-theme on route group later) */
+[data-theme="music"] {
+  --bg: #0f1217;
+  --bg-elevated: #181c24;
+  --ink: #e8e4dc;
+  --ink-muted: #a39e94;
+  --line: #2a303b;
+  --accent: #e8a54b;
+  --accent-hover: #f0bc6e;
+  --accent-soft: #2a2114;
+  --lake: #7eb8c9;
+  --lake-soft: #1a2a30;
+  --focus: #e8a54b;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-lake: var(--lake);
+  --color-lake-soft: var(--lake-soft);
+  --color-focus: var(--focus);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100%;
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(ellipse 120% 80% at 100% -20%, color-mix(in srgb, var(--lake) 14%, transparent), transparent 55%),
+      radial-gradient(ellipse 90% 60% at -10% 110%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 50%),
+      linear-gradient(180deg, color-mix(in srgb, var(--bg-elevated) 70%, transparent), transparent 28%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: var(--font-body), Georgia, serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+}
+
+@layer utilities {
+  .page-shell {
+    width: min(100% - (var(--space-page) * 2), var(--max-content));
+    margin-inline: auto;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}

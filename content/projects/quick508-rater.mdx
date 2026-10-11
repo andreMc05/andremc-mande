@@ -1,0 +1,38 @@
+---
+slug: quick508-rater
+title: 508 Draft Rater
+summary: A pre-audit rater for one HTML page against Revised Section 508 electronic content (E205 → WCAG 2.0 A/AA). Never claims “508 compliant.”
+coverImage: /images/projects/quick508-rater.svg
+coverImageAlt: Cool accessibility tooling gradient labeled 508
+tags: [accessibility, section-508, wcag, tooling]
+dateCreated: "2026-09-21"
+dateUpdated: "2026-09-21"
+featured: true
+draft: false
+status: in-progress
+category: [dev-tooling, a11y]
+techStack: [TypeScript, Python, HTML, JavaScript, CSS, axe-core]
+links:
+  repo: https://github.com/andreMc05/quick508-rater
+outcome: Deterministic draft status strings plus an optional risk/coverage index — built so humans still own legal sign-off.
+dateStarted: "2026-09-21"
+---
+
+## Problem
+
+Teams confuse automated scans with Section 508 conformance. Products that print “508 compliant” or invent a compliance score create legal risk. I needed a **pre-audit rater** that is explicit about owners, packs, and limits.
+
+## Approach
+
+Working title was Quick508 Rater; the shipped name is **508 Draft Rater** so it cannot be mistaken for a conformance engine. Scope for v1:
+
+- Revised Section 508 electronic content: **E205.4 → WCAG 2.0 Level A and AA** (38 SCs)
+- Page-level draft status only: does not meet / incomplete / no failures on tested criteria
+- Optional 0–100 **risk/coverage index** — never a compliance score
+- Owners: `code`, `axe`, `jev` (semantic judgments), and `human` for runtime/site-set SCs
+
+Jev is not the decision maker. Deterministic fails from code + axe cannot be overruled by vibes.
+
+## Outcome
+
+A tooling stance that matches how federal accessibility work actually signs off — humans on ACR/VPAT, machines on inventory and mapped WCAG signals.

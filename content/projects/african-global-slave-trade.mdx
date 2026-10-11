@@ -1,0 +1,37 @@
+---
+slug: african-global-slave-trade
+title: Global African Slave Trade — Interactive Atlas
+summary: A 3D globe exploring forced migration pathways, regional powers, and cultural identities across Africa from 1400–1900 CE.
+coverImage: /images/projects/african-global-slave-trade.svg
+coverImageAlt: Deep teal abstract globe gradient labeled Globe
+tags: [digital-humanities, 3d, history, atlas]
+dateCreated: "2026-06-20"
+dateUpdated: "2026-06-22"
+featured: true
+draft: false
+status: live
+category: [frontend, performance]
+techStack: [JavaScript, CSS, HTML]
+links:
+  repo: https://github.com/andreMc05/african-global-slave-trade
+outcome: Interactive atlas with a documented user guide — run locally via a static server for exploration of pathways and regional context.
+dateStarted: "2026-06-20"
+---
+
+## Problem
+
+Flat maps struggle to show the scale and directionality of forced migration across centuries. Viewers need spatial context for regional powers and cultural identities — not only trade-route overlays.
+
+## Approach
+
+An interactive 3D globe covering **1400–1900 CE**, with a full user guide in-repo (`docs/GUIDE.md`). Local preview is intentional and simple:
+
+```bash
+python3 -m http.server 8080
+```
+
+No framework tax — JavaScript, CSS, and HTML aimed at clarity of motion and readable panels over spectacle.
+
+## Outcome
+
+A self-hosted atlas for education and research demos, pairing geographic exploration with regional and cultural framing of the trade’s impact.

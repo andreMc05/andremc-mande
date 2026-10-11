@@ -1,0 +1,39 @@
+---
+slug: choose-your-stoyline
+title: Night Tide
+summary: An interactive riverfront courier story — typed exits, free-text referee mapping, inventory/HP flags, and multiple endings. No API key required to play.
+coverImage: /images/projects/choose-your-stoyline.svg
+coverImageAlt: Abstract night quay gradient labeled Night Tide
+tags: [interactive-fiction, game-dev, python, storytelling]
+dateCreated: "2026-09-22"
+dateUpdated: "2026-10-03"
+featured: true
+draft: false
+status: experimental
+category: [game-dev, ai-tooling]
+techStack: [Python, JavaScript, CSS, HTML, Pydantic, PyYAML]
+links:
+  repo: https://github.com/andreMc05/choose-your-stoyline
+outcome: Playable CLI and local web UI with four endings, save/archive, and a stub referee that swaps for live Jev later.
+dateStarted: "2026-09-22"
+changelog:
+  - date: "2026-10-03"
+    note: Web UI and archive of finished runs alongside CLI saves.
+---
+
+## Problem
+
+Most choose-your-own-adventure prototypes either hard-code every branch or lean on a cloud LLM for every turn. I wanted a story engine where **the code owns state** (flags, inventory, HP, heat) and a referee only labels which exit the player meant — including free text that is not on the button list.
+
+## Approach
+
+**Night Tide** drops you on a rain-soaked quay with forged papers, one coin, and a sealed packet. You can run:
+
+- `.venv/bin/python web.py` — browser UI at `127.0.0.1:5050`
+- `.venv/bin/python cli.py` — terminal, with `--new` to wipe the save
+
+Nerve, caution, and heat (0–3) move with your choices. Four endings: clean berth, watched berth, detained, or packet gone. Leave `TYPESAFE_API_KEY` unset and a stub referee plays; set the key later to swap in live Jev — Groq is not wired yet.
+
+## Outcome
+
+A self-contained Python story runtime with a thin web shell, finished-run archive under `saves/archive/`, and a clean seam for a smarter referee without requiring an API key to demo the night.
