@@ -14,10 +14,13 @@ Personal portfolio for **Andre McGruder** — projects, skills, dual blogs (dev 
 
 ```bash
 pnpm install
-pnpm dev      # http://localhost:3000
+pnpm dev      # start → http://localhost:3000
+              # stop  → Ctrl+C in that terminal
 pnpm build
 pnpm lint
 ```
+
+Full start/stop, content paths, and Vercel notes: **[HOWTO.md](./HOWTO.md)**.
 
 ## Repo layout
 

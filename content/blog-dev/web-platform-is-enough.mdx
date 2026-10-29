@@ -1,0 +1,95 @@
+---
+slug: web-platform-is-enough
+title: "The web platform is enough for a complex game"
+summary: Bee Brave is a top-down arcade shooter built as pure ES modules — no framework, bundler, or dependencies. Canvas and the rest of the platform already cover simulation, combat, and rendering.
+coverImage: /images/blog/bee-brave-title.jpg
+coverImageAlt: Bee Brave title screen with a metal hive under fire, bees carrying crystals, and menu buttons for Quick Play, Custom Game, and How to Play
+tags: [canvas, vanilla-js, performance, game-dev, architecture]
+dateCreated: "2026-10-19"
+dateUpdated: "2026-10-19"
+featured: true
+draft: false
+seoTitle: "Core web platform APIs are enough for a complex game"
+seoDescription: Bee Brave shows that Canvas, ES modules, and the rest of the web platform can carry a complex arcade game without a framework or dependencies.
+relatedProjects:
+  - bee-brave-pure-code
+codeRepo: https://github.com/andreMc05/bee-brave-pure-code
+series: Vanilla web
+readingTime: 5
+techStack:
+  - JavaScript
+  - HTML5 Canvas
+  - ES modules
+---
+
+**Core web platform APIs are sufficient for complex, high-performance interactive applications — including games — without frameworks or external libraries.** That choice removes framework runtime overhead, large bundles, transitive dependency risk, and ongoing migration costs.
+
+[Bee Brave](/projects/bee-brave-pure-code) (a top-down arcade shooter with bee AI, hive cell building, resource harvesting, combat, particles, parallax, and screen shake) was built as a pure ES-modules Canvas project with no bundler or dependencies to test exactly this claim. You can [play it](https://andremc05.github.io/bee-brave-pure-code/) or read the [architecture](https://github.com/andreMc05/bee-brave-pure-code/blob/main/dev-knowledge/architecture.md), [performance](https://github.com/andreMc05/bee-brave-pure-code/blob/main/dev-knowledge/rules/performance.md), and [rendering](https://github.com/andreMc05/bee-brave-pure-code/blob/main/dev-knowledge/rendering.md) docs. They record standard high-performance patterns implemented directly against the platform.
+
+## File size and payload
+
+Framework and engine runtimes add fixed costs before any application logic. Recent SPA comparisons show basic React apps in the ~58 KB uncompressed / ~19 KB Brotli range, Vue smaller, and Angular larger; medium and complex SPAs grow further with state and data libraries. Phaser (a popular HTML5 game framework) ships a full minified and gzipped build around 345–347 KB; even aggressive custom builds (removing unused physics, renderers, and so on) typically stay well above 100 KB.
+
+Vanilla ES modules ship only the code you write. Native browser loading of modules means no bundler tax and no unused framework code. For a game that already needs pools, spatial hashing, culling, and offscreen caching, that difference is pure overhead.
+
+## Security and hidden code
+
+Supply-chain risk is dominated by the npm ecosystem. Sonatype tracking shows cumulative malicious packages approaching or exceeding 1.2 million by the end of 2025 and nearly 2 million by late 2026, with the large majority (often 89–99% in recent quarters) on npm. New malicious packages numbered in the hundreds of thousands annually; self-propagating worms (for example, Shai-Hulud) and credential-stealing campaigns have compromised hundreds of packages at a time.
+
+Independent analyses consistently find that the large majority of open-source vulnerabilities live in transitive (indirect) dependencies — figures in the 75–95% range appear across Snyk and Endor Labs reports. A zero-dependency pure-ES-modules codebase has none of this surface: no install scripts, no transitive packages, no lockfile surprises, and no hidden functionality beyond what the browser platform itself provides. The only external code is the heavily audited browser implementation of Canvas, `requestAnimationFrame`, Web Audio, `localStorage`, and the rest.
+
+## Maintenance
+
+Browser APIs are deliberately stable and backward-compatible over multi-year horizons. Framework major versions routinely require migrations (component models, hooks, reactivity systems, build tooling). A pure Canvas and ES-modules game stays on the same language and platform APIs. The [architecture rules](https://github.com/andreMc05/bee-brave-pure-code/blob/main/dev-knowledge/rules/architecture.md) already encode the necessary discipline: movement scaled by `dt * 0.06`, millisecond timers subtracting `dt` directly, update/draw separation, `ObjectPool` plus `SpatialHash`, and visibility culling. There is no dependency update treadmill and no “this abstraction is deprecated.”
+
+## Performance
+
+HTML5 Canvas is an immediate-mode drawing surface. There is no virtual DOM reconciliation, no component tree, and no framework runtime on the hot path. Google’s long-standing Canvas performance guidance (web.dev) recommends exactly the techniques in the Bee Brave [rendering](https://github.com/andreMc05/bee-brave-pure-code/blob/main/dev-knowledge/rendering.md) and [performance](https://github.com/andreMc05/bee-brave-pure-code/blob/main/dev-knowledge/rules/performance.md) docs: pre-render repeated or expensive content to off-screen canvases, batch similar draw calls, minimize state changes, cull off-screen entities, use `requestAnimationFrame` with delta-time, and cache gradients and paths.
+
+Modern browsers hardware-accelerate Canvas. 60 FPS is the conventional target and is routinely achieved for 2D games when those patterns are followed. Studies comparing animation technologies show Canvas (and WebGL) scaling to far higher object counts than DOM or SVG approaches before frame-rate collapse. The game’s architecture — pools, a spatial hash for neighbor queries, dirty-flag parallax, visibility helpers — is a direct implementation of those platform-level practices.
+
+## Why a game is a strong test
+
+A top-down shooter with swarm AI, dynamic hive construction, a resource economy, multiple weapon types, particles, and layered rendering exercises many domains at once: simulation, collision, rendering, input, audio, persistence, and UI. Keeping all of them interactive and performant without an engine or framework is non-trivial.
+
+The pure-ES-modules implementation, together with its explicit performance rules (pools, spatial queries, culling, off-screen caching, no per-frame DOM queries), shows that the platform primitives are adequate. AI-assisted coding in 2024 and later further lowers the cost of writing those systems directly, because the code remains plain JavaScript that models understand without framework-specific idioms.
+
+## In short
+
+The web platform already supplies the necessary building blocks: Canvas 2D, `requestAnimationFrame`, ES modules, Web Audio, storage, and pointer events. Frameworks and libraries add convenience and structure at the cost of bytes, attack surface, and long-term maintenance. For workloads that can be expressed as a simulation plus an immediate-mode render loop, that cost is optional.
+
+Bee Brave is concrete evidence that a non-trivial interactive application can be built and kept performant entirely within those platform boundaries.
+
+## Resources
+
+### Core performance and Canvas
+
+- [Improving HTML5 Canvas performance – web.dev](https://web.dev/articles/canvas-performance)
+- [Why your React app lags but this Canvas game runs at 60FPS – DEV Community](https://dev.to/yzbkaka_dev/why-your-react-app-lags-but-this-canvas-game-runs-at-60fps-2h1d)
+- [I built 120 HTML5 games using pure Canvas (no frameworks) – DEV Community](https://dev.to/cannan_david/i-built-120-html5-games-using-pure-canvas-no-frameworks-gdm)
+
+### Bundle size and framework overhead
+
+- [Comparison: React 19 vs Vue 3.4 vs Angular 18 – bundle size benchmarks](https://johal.in/comparison-react-19-vs-vue-34-vs-angular)
+- [Frontend framework bundle size benchmark – DEV Community](https://dev.to/qingkuai/frontend-framework-bundle-size-benchmark-reactvueangular-vs-fine-grained-runtimes-2nk0)
+- [Phaser on Best of JS](https://bestofjs.org/projects/phaser)
+- [Phaser on Bundlephobia](https://bundlephobia.com/package/phaser)
+
+### Supply chain and npm vulnerabilities
+
+- [Sonatype – State of the Software Supply Chain](https://www.sonatype.com/state-of-the-software-supply-chain)
+- [Sonatype – Q3 2026 Open Source Malware Index](https://www.sonatype.com/blog/q3-2026-open-source-malware-index-when-compromise-compounds)
+- [Original sin of npm: vulnerability propagation in JavaScript dependency networks (arXiv)](https://arxiv.org/abs/2604.17668)
+- [Transitive dependencies account for 95% of bugs – Infosecurity Magazine](https://www.infosecurity-magazine.com/news/transitive-dependencies-account-95/)
+- [New research: malware in open source ecosystems surges – Endor Labs](https://www.endorlabs.com/learn/new-research-malware-in-open-source-ecosystems-surges-14x-as-attackers-hijack-trusted-packages)
+
+### Vanilla JS and framework trade-offs
+
+- [The case for vanilla JavaScript over frameworks – OpenReplay Blog](https://blog.openreplay.com/vanilla-javascript-over-frameworks/)
+- [Why developers are returning to vanilla JavaScript](https://talent500.com/blog/developers-ditching-frameworks-for-vanilla-javascript/)
+- [You don’t need a UI framework: vanilla JavaScript guide](https://digitalthriveai.com/en-au/resources/web-design/you-dont-need-ui-framework/)
+
+### Game engine size context
+
+- [Phaser vs Unity for browser games](https://generalistprogrammer.com/tutorials/phaser-vs-unity-browser-games)
+- [Web game engine size review 2023](https://www.karlschmidt.net/Web-Game-Engine-Size-Review-2023)

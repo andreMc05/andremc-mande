@@ -15,6 +15,8 @@ const nextConfig: NextConfig = {
     "/skills": ["../../content/skills/**/*"],
     "/projects": ["../../content/projects/**/*"],
     "/projects/[slug]": ["../../content/projects/**/*"],
+    "/blog/dev": ["../../content/blog-dev/**/*"],
+    "/blog/dev/[slug]": ["../../content/blog-dev/**/*"],
   },
   images: {
     // Project covers are in-repo SVGs for now; swap to photos later.

@@ -1,0 +1,50 @@
+---
+# Duplicate this file to start a new post.
+# Rename the file to match slug (e.g. my-post-title.mdx).
+# Set draft: true until you are ready to publish.
+slug: the-bug-is-usually-one-doll-deeper
+title: "The bug is usually one doll deeper"
+summary: Nested code layers hide timing and dependency failures that text and screenshots miss. Video gives agents the sequence so they can map a broken screen back to the specific layer that is out of sync.
+coverImage: /images/blog/nesting-dolls.jpeg
+coverImageAlt: Open Russian nesting dolls with successive layers of UI screens, event flows, and code symbols visible inside the outermost doll.
+tags: [AI coding, debugging, AI agents, video debugging, software engineering]
+dateCreated: "2026-10-13"
+dateUpdated: "2026-10-13"
+featured: true
+draft: false
+seoTitle: "The bug is usually one doll deeper — AI video debugging"
+seoDescription: Screen recordings capture the order of nested events and library quirks. Agents that process video can locate the layer responsible instead of guessing from static descriptions.
+relatedProjects:
+  - quick508-rater
+codeRepo: https://github.com/andreMc05/quick508-rater
+series: Accessibility tooling
+readingTime: 2
+techStack:
+  - TypeScript
+  - axe-core
+  - WCAG 2.0
+---
+
+Large applications pass data, events, and side effects through nested layers the same way Russian nesting dolls stack. An outer screen fails because an inner doll—an event handler, a library callback, a state update, or a dependency quirk—fired at the wrong moment or returned the wrong value. Text prompts and single screenshots show one doll. They do not show the order in which the dolls open.
+
+A short screen recording supplies that order. It records the exact frame where a spinner hangs after a successful network response, the animation that collides with a click handler, or the layout shift that only appears after a specific sequence of interactions. Several existing tools already convert that recording into structured input an agent can act on:
+
+- Framesleuth (local-first, Apache-2.0, MCP-ready) processes frames, console output, network activity, and narration into an evidence-cited Context Bundle. The agent receives ranked file:line candidates grounded in the video rather than a free-text description.
+- The video-debug agent skill uses ffmpeg scene detection to extract only the frames where the screen changes, then hands those frames plus a timeline to Claude Code, Cursor, or similar agents so they can correlate a visual glitch to code.
+- clip.qa records a phone session and produces a structured bug report with reproduction steps, expected versus actual behavior, and device context formatted for direct paste into Claude Code or Cursor.
+- Replay analyzes video for temporal behavior (state transitions across frames) rather than static pixels, then supplies agents with structured UI and flow data that static screenshots lack.
+
+SessionSolve and similar experimental pipelines take the same idea further by loading the full repository alongside the video so the model can link a visual failure to a specific code path, generate a patch, and produce a regression test derived from the recorded actions.
+
+Once the harness exists—MCP tools, agent skills, or a local pipeline that maps video evidence back into the codebase—the model can examine the sequence instead of reconstructing it from a written report. You still narrow the scope to a feature or module. You then ask for explicit verification steps so the proposed change can be checked against the original behavior. The nesting does not disappear; video simply lets the agent watch the dolls open in order and identify which layer is out of sync.
+
+**Sources**
+
+- [Framesleuth — turn any video into code your agent can ship](https://framesleuth.com/)
+- [clip.qa — Turn Screen Recordings into Bug Reports](https://clip.qa/)
+- [video-debug: Debug UI bugs from screencasts](https://github.com/vladzima/video-debug)
+- [SessionSolve | Devpost](https://devpost.com/software/sessionsolve)
+- [Technical Deep Dive: Replay AI Video to Code Analysis Algorithm in 2026](https://www.replay.build/blog/technical-deep-dive-replay-ai-video-to-code-analysis-algorithm-in-2026)
+- [AI-Assisted UI Debugging from Screen Recordings](https://www.replay.build/blog/ai-assisted-ui-debugging-from-screen-recordings)
+- [Tracing Spans as Russian Nesting Dolls](https://simorconsulting.com/blog/tracing-spans-as-russian-nesting-dolls/)
+- [bug2context: Video as context for AI](https://github.com/emanueld92/bug2context)
